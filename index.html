@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="A collection of little moments, faraway places, and the colors that stay with us." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <title>Postcards from — a collection of colors & places</title>
+  <script type="module" src="/src/main.ts"></script>
+</head>
+<body>
+  <svg class="texture-filter" aria-hidden="true"><filter id="paper"><feTurbulence type="fractalNoise" baseFrequency=".72" numOctaves="3" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter></svg>
+  <header class="masthead"><a class="wordmark" href="./" aria-label="Postcards from home">postcards from<span class="wordmark-dot">.</span></a><span class="edition">A PERSONAL COLLECTION<br>OF PLACES & THEIR COLORS</span></header>
+  <main>
+    <section class="intro" aria-labelledby="page-title"><p class="eyebrow">LITTLE MOMENTS, KEPT FOREVER</p><h1 id="page-title">Somewhere I’d like to remember.</h1><p>Sunlight, shadows, and colors that stayed with me.<br>A few keepsakes from being somewhere.</p></section>
+    <section class="collection" aria-label="Postcard racks"><div id="racks" class="racks"></div><div class="spin-controls"><button id="spin-left" class="arrow" aria-label="Rotate rack to previous column">←</button><span id="column-status" class="mono">01 / 03</span><button id="spin-right" class="arrow" aria-label="Rotate rack to next column">→</button></div><p class="interaction-hint">DRAG TO TURN <span>·</span> PICK A POSTCARD</p><nav id="locations" aria-label="Choose a location"></nav><p id="announcement" class="sr-only" aria-live="polite" aria-atomic="true"></p></section>
+  </main>
+  <footer><span>A SMALL ARCHIVE OF THINGS I DIDN’T WANT TO FORGET.</span><span>36 MOMENTS / 03 PLACES</span></footer>
+  <dialog id="postcard-dialog" aria-labelledby="dialog-location"><div class="postcard-sheet"><img id="dialog-photo" width="600" height="800" decoding="async" loading="lazy" alt=""/><section class="postcard-details"><div class="destination"><h2 id="dialog-location"></h2><p id="dialog-country"></p></div><time id="dialog-date"></time><button id="close-dialog" class="close" aria-label="Close postcard">×</button><div class="palette-block"><div class="palette-caption"><i></i><span>COLOR PALETTE</span><i></i></div><div id="swatches" class="swatches"></div></div><p class="postcard-note">A little piece of somewhere.</p></section></div></dialog>
+</body></html>
