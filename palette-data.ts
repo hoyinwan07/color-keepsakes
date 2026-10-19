@@ -37,14 +37,14 @@ export const images: PaletteEntry[] = [
         hexColors: ["#18110e", "#7b793d", "#e1bb6f", "#2d538c", "#e8e7cf"],
     },
     {
-        paletteTitle: "Autumn Sunset Via The Pier",
+        paletteTitle: "Autumn City Pop",
         location: "NYC",
         date: "2024-09",
         image: "nyc-skyline-sunset.jpg",
         hexColors: ["#1e1d24", "#ac2b12", "#e7833a", "#f4f3ac", "#f0eae6"],
     },
     {
-        paletteTitle: "Concrete Jungle Light Leaks",
+        paletteTitle: "Concrete Jungle Light",
         location: "NYC",
         date: "2026-09",
         image: "light-leaks.jpg",
@@ -58,7 +58,7 @@ export const images: PaletteEntry[] = [
         hexColors: ["#1a2b3a", "#2e5476", "#6f99c1", "#ddd2d1", "#e0dce2"],
     },
     {
-        paletteTitle: "Wine & Whine Storefront",
+        paletteTitle: "Wine & Whine",
         location: "Nice",
         date: "2024-07",
         image: "wine-store-front.jpg",
@@ -79,7 +79,7 @@ export const images: PaletteEntry[] = [
         hexColors: ["#453327","#576d1f",  "#877c19", "#c7d05d", "#f5f3e0"],
     },
     {
-        paletteTitle: "Street Vending Machine",
+        paletteTitle: "Vending Spaces",
         location: "Tokyo",
         date: "2025-04",
         image: "tokyo-vending-machines.jpg",
@@ -93,14 +93,14 @@ export const images: PaletteEntry[] = [
         hexColors: ["#612f0e", "#b4792c", "#8ca4ed", "#222b47", "#e9dfd7"],
     },
     {
-        paletteTitle: "Coffee Chat @ Watchhouse",
+        paletteTitle: "Matcha + Pastry > $15",
         location: "NYC",
         date: "2025-06",
         image: "coffee-chat-watchhouse.jpg",
         hexColors: ["#522c21", "#616f2a", "#cddfbd", "#bc6844", "#f5e6da"],
     },
     {
-        paletteTitle: "Cloudy Day in Central Park",
+        paletteTitle: "A Cloudy Central Park",
         location: "NYC",
         date: "2023-10",
         image: "cloudy-day-central-park.jpg",
@@ -114,7 +114,7 @@ export const images: PaletteEntry[] = [
         hexColors: ["#465d41", "#7d989e", "#b25b4c", "#d8c6b9", "#ffedcd"],
     },
     {
-        paletteTitle: "Overlook in Eze",
+        paletteTitle: "Eze Overlook",
         location: "Eze",
         date: "2024-07",
         image: "eze-overlook.jpg",
@@ -128,7 +128,7 @@ export const images: PaletteEntry[] = [
         hexColors: ["#7b000c", "#205152", "#756c25", "#dfdcc1", "#f8f9eb"],
     },
     {
-        paletteTitle: "Santa Monica Pier",
+        paletteTitle: "A Pier-Fect Day",
         location: "Santa Monica",
         date: "2019-06",
         image: "santa-monica-pier.jpg",
@@ -156,7 +156,7 @@ export const images: PaletteEntry[] = [
         hexColors: ["#fb8150", "#a6e0fc", "#1c1a26", "#e5b97c", "#effbf7"],
     },
     {
-        paletteTitle: "Summer Dining in the City",
+        paletteTitle: "Bookmarked Restaurant",
         location: "NYC",
         date: "2025-06",
         image: "nyc-summer-dining.jpg",
