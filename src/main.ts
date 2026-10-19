@@ -1,10 +1,18 @@
 import './styles.css';
-import { racks, type Photo, type Rack } from './data/racks';
+import { racks, type Photo } from './data/racks';
 import { validateRacks } from './data/validate';
 if (import.meta.env.DEV) validateRacks(racks);
 const $ = <T extends HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
 const mod = (n: number, length: number) => ((n % length) + length) % length;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+const imageUrls = import.meta.glob<string>('./images/*.jpg', {
+  eager: true, query: '?url', import: 'default',
+});
+function photoSource(photo: Photo): string {
+  const url = imageUrls[`./images/${photo.src}`];
+  if (!url) throw new Error(`Missing image asset: ${photo.src}`);
+  return url;
+}
 const host = $('#racks');
 const dialog = $<HTMLDialogElement>('#postcard-dialog');
 const turns = racks.map(() => 0);
@@ -25,43 +33,45 @@ function fadeChange(node: HTMLElement, change: () => void): void {
     change(); node.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 140 });
   });
 }
-function openPhoto(rack: Rack, photo: Photo, button: HTMLButtonElement): void {
+function openPhoto(photo: Photo, button: HTMLButtonElement): void {
   if (performance.now() < suppressClickUntil || changing) return;
   opener = button;
-  const image = $<HTMLImageElement>('#dialog-photo'); image.src = photo.src; image.alt = photo.alt;
-  $('#dialog-location').textContent = rack.location;
-  $('#dialog-country').textContent = `// ${rack.country}`;
+  const image = $<HTMLImageElement>('#dialog-photo'); image.src = photoSource(photo); image.alt = photo.alt;
+  $('#dialog-title').textContent = photo.title;
   const date = $<HTMLTimeElement>('#dialog-date'); date.textContent = photo.date; date.dateTime = photo.date;
   $('#swatches').replaceChildren(...photo.palette.map((hex, i) => {
+    const item = el('span', 'swatch-item');
     const swatch = el('span', 'swatch'); swatch.style.backgroundColor = hex;
     swatch.setAttribute('role', 'img'); swatch.setAttribute('aria-label', `Color ${i + 1} of 5: ${hex}`); swatch.title = hex;
-    return swatch;
+    const label = el('span', 'swatch-hex', hex);
+    label.setAttribute('aria-hidden', 'true'); // The swatch already announces its hex value.
+    item.append(swatch, label);
+    return item;
   }));
   dialog.showModal(); document.body.classList.add('modal-open'); $('#close-dialog').focus();
 }
 function makeRack(index: number, position: number): HTMLElement {
   const rack = racks[index];
   const item = el('article', 'rack-item'); item.dataset.index = String(index); item.dataset.position = String(position);
-  const title = el('h2', 'rack-title'); title.append(el('span', '', 'postcards from'), el('strong', '', rack.location));
-  item.append(title);
+  item.setAttribute('aria-label', `Palette rack ${index + 1} of ${racks.length}`);
   const scene = el('div', 'rack-scene');
   const spindle = el('div', 'spindle'); spindle.style.transform = `rotateY(${-turns[index] * 120}deg)`;
   spindle.append(el('div', 'pole'));
   for (let col = 0; col < 3; col++) {
     const column = el('div', 'column'); column.style.transform = `rotateY(${col * 120}deg) translateZ(var(--radius))`;
     column.dataset.column = String(col);
-    for (let row = 0; row < 4; row++) {
-      const photo = rack.photos[col * 4 + row];
+    for (let row = 0; row < 3; row++) {
+      const photo = rack.photos[col * 3 + row];
       const pocket = el('div', 'pocket'); const button = el('button', 'postcard'); button.type = 'button';
-      button.setAttribute('aria-label', `Open postcard ${col * 4 + row + 1} from ${rack.location}: ${photo.alt}`);
-      const img = el('img'); img.src = photo.src; img.alt = photo.alt; img.width = 600; img.height = 800; img.loading = 'lazy'; img.decoding = 'async'; img.draggable = false;
-      button.append(img); button.addEventListener('click', () => openPhoto(rack, photo, button));
+      button.setAttribute('aria-label', `Open palette: ${photo.title}`);
+      const img = el('img'); img.src = photoSource(photo); img.alt = photo.alt; img.width = 600; img.height = 800; img.loading = 'lazy'; img.decoding = 'async'; img.draggable = false;
+      button.append(img); button.addEventListener('click', () => openPhoto(photo, button));
       pocket.append(button, el('span', 'wire-lip')); column.append(pocket);
     }
     spindle.append(column);
   }
   scene.append(spindle, el('div', 'rack-foot')); item.append(scene);
-  const select = el('button', 'rack-select'); select.type = 'button'; select.setAttribute('aria-label', `View postcards from ${rack.location}`);
+  const select = el('button', 'rack-select'); select.type = 'button'; select.setAttribute('aria-label', `View palette rack ${index + 1}`);
   select.addEventListener('click', () => changeRack(index)); item.append(select);
   scene.addEventListener('pointerdown', event => {
     if (index !== active || changing || event.button !== 0 || drag) return;
@@ -84,7 +94,7 @@ function render(): void {
 }
 function updateStatus(): void {
   $('#column-status').textContent = `${String(mod(turns[active], 3) + 1).padStart(2, '0')} / 03`;
-  document.querySelectorAll<HTMLButtonElement>('.location-tab').forEach((button, i) => button.setAttribute('aria-current', String(i === active)));
+  document.querySelectorAll<HTMLButtonElement>('.rack-tab').forEach((button, i) => button.setAttribute('aria-current', String(i === active)));
 }
 function spin(step: number): void {
   if (changing || fading || drag || dialog.open) return;
@@ -96,7 +106,7 @@ function spin(step: number): void {
   fadeChange(item.querySelector('.spindle')!, () => {
     item.querySelector<HTMLElement>('.spindle')!.style.transform = `rotateY(${-turns[active] * 120}deg)`;
     updateAccess(item); updateStatus(); fading = false;
-    $('#announcement').textContent = `${racks[active].location}, column ${mod(turns[active], 3) + 1} of 3`;
+    $('#announcement').textContent = `Rack ${active + 1}, column ${mod(turns[active], 3) + 1} of 3`;
   });
 }
 function changeRack(next: number): void {
@@ -123,8 +133,8 @@ function changeRack(next: number): void {
   fadeChange(host, change);
   window.setTimeout(() => {
     render(); changing = false;
-    document.querySelector<HTMLButtonElement>(`.location-tab[data-index="${active}"]`)!.focus({ preventScroll: true });
-    $('#announcement').textContent = `Postcards from ${racks[active].location}, ${racks[active].country}. Column ${mod(turns[active], 3) + 1} of 3.`;
+    document.querySelector<HTMLButtonElement>(`.rack-tab[data-index="${active}"]`)!.focus({ preventScroll: true });
+    $('#announcement').textContent = `Palette rack ${active + 1} of ${racks.length}. Column ${mod(turns[active], 3) + 1} of 3.`;
   }, reduced.matches ? 250 : 720);
 }
 window.addEventListener('pointermove', event => {
@@ -165,9 +175,9 @@ let backdropDown = false;
 dialog.addEventListener('pointerdown', event => { backdropDown = event.target === dialog; });
 dialog.addEventListener('click', event => { if (backdropDown && event.target === dialog) dialog.close(); });
 dialog.addEventListener('close', () => { document.body.classList.remove('modal-open'); opener?.focus({ preventScroll: true }); });
-racks.forEach((rack, i) => {
-  const button = el('button', 'location-tab', rack.location); button.dataset.index = String(i); button.setAttribute('aria-label', `View postcards from ${rack.location}`);
-  button.addEventListener('click', () => changeRack(i)); $('#locations').append(button);
+racks.forEach((_, i) => {
+  const button = el('button', 'rack-tab', String(i + 1).padStart(2, '0')); button.dataset.index = String(i); button.setAttribute('aria-label', `View palette rack ${i + 1}`);
+  button.addEventListener('click', () => changeRack(i)); $('#rack-navigation').append(button);
 });
-$('footer span:last-child').textContent = `${racks.length * 12} MOMENTS / ${String(racks.length).padStart(2, '0')} PLACES`;
+$('footer span:last-child').textContent = `${racks.reduce((total, rack) => total + rack.photos.length, 0)} PHOTO-INSPIRED PALETTES`;
 render();

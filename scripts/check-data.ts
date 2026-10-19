@@ -4,7 +4,7 @@ validateRacks(racks);
 const cases = [
   ['bad hex', (copy: typeof racks) => { copy[0].photos[0].palette[0] = '#NOTHEX'; }],
   ['four colors', (copy: typeof racks) => { copy[0].photos[0].palette.pop(); }],
-  ['eleven photos', (copy: typeof racks) => { copy[0].photos.pop(); }],
+  ['eight photos', (copy: typeof racks) => { copy[0].photos.pop(); }],
   ['bad date', (copy: typeof racks) => { copy[0].photos[0].date = '2024-13'; }],
 ] as const;
 for (const [name, mutate] of cases) {
