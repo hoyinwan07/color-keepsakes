@@ -93,7 +93,7 @@ export const images: PaletteEntry[] = [
         hexColors: ["#612f0e", "#b4792c", "#8ca4ed", "#222b47", "#e9dfd7"],
     },
     {
-        paletteTitle: "Matcha + Pastry > $15",
+        paletteTitle: "Matcha + Pastry > $15 ?",
         location: "NYC",
         date: "2025-06",
         image: "coffee-chat-watchhouse.jpg",
@@ -109,7 +109,7 @@ export const images: PaletteEntry[] = [
     {
         paletteTitle: "Lucian Beach",
         location: "Saint Lucia",
-        date: "2024-02",
+        date: "2024-05",
         image: "saint-lucia-beach.jpg",
         hexColors: ["#465d41", "#7d989e", "#b25b4c", "#d8c6b9", "#ffedcd"],
     },
@@ -156,11 +156,11 @@ export const images: PaletteEntry[] = [
         hexColors: ["#fb8150", "#a6e0fc", "#1c1a26", "#e5b97c", "#effbf7"],
     },
     {
-        paletteTitle: "Bookmarked Restaurant",
-        location: "NYC",
-        date: "2025-06",
-        image: "nyc-summer-dining.jpg",
-        hexColors: ["#f4d5c1", "#405743", "#fc4f27", "#264d7e", "#eee1d2"],
+        paletteTitle: "Cliff-hangin'",
+        location: "Lagos",
+        date: "2023-09",
+        image: "cliff-hangin.jpg",
+        hexColors: ["#5b888f", "#e5a57c", "#f1e6b7", "#599686", "#f1eadd"],
     },
     {
         paletteTitle: "The Six",
@@ -184,7 +184,7 @@ export const images: PaletteEntry[] = [
         hexColors: ["#403626", "#612c23", "#beab8b", "#b8bcaf", "#f8f1dc"],
     },
     {
-        paletteTitle: "Summer Neighborhood Walks",
+        paletteTitle: "Full Sun",
         location: "NYC",
         date: "2026-07",
         image: "summer-walks.jpg",
