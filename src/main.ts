@@ -63,6 +63,7 @@ function openPhoto(photo: Photo, button: HTMLButtonElement): void {
   }
   $('#dialog-title').textContent = photo.title;
   const date = $<HTMLTimeElement>('#dialog-date'); date.textContent = photo.date; date.dateTime = photo.date;
+  $('#dialog-location').hidden = !photo.location; $('#dialog-location-name').textContent = photo.location;
   $('#swatches').replaceChildren(...photo.palette.map((hex, i) => {
     const item = el('span', 'swatch-item');
     const swatch = el('span', 'swatch'); swatch.style.backgroundColor = hex;

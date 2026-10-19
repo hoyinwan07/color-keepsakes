@@ -8,6 +8,7 @@ export type Photo = {
   src: string; // Original filename in originals/; main.ts resolves its WebP renditions to Vite asset URLs.
   alt: string;
   date: string;
+  location: string; // City or region only; may be empty.
   palette: [Hex, Hex, Hex, Hex, Hex];
 };
 export type Rack = { id: string; photos: Photo[] };
@@ -19,6 +20,7 @@ const photos: Photo[] = images.map(entry => ({
   src: entry.image,
   alt: entry.paletteTitle,
   date: entry.date,
+  location: entry.location.trim(),
   palette: [...entry.hexColors],
 }));
 

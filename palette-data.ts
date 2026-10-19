@@ -1,7 +1,7 @@
 export type Hex = `#${string}`;
 export type PaletteEntry = {
     paletteTitle: string;
-    location: string; // Retained source metadata; not used to group or label racks.
+    location: string; // Shown after the date in the postcard dialog; not used to group racks. Keep it to a city or region.
     date: string;
     image: string; // Exact filename in originals/ (WebP renditions live in src/images).
     hexColors: [Hex, Hex, Hex, Hex, Hex];
@@ -16,14 +16,14 @@ export const images: PaletteEntry[] = [
         hexColors: ["#87acd2", "#7f6248", "#6f6a3c", "#371808", "#eee1d2"],
     },
     {
-        paletteTitle: "Yucca gloriosa",
+        paletteTitle: "Yucca Gloriosa",
         location: "Los Angeles",
         date: "2020-05",
         image: "yucca.jpg",
         hexColors: ["#373b17", "#71713f", "#d0cdb6", "#d9b64c", "#f1e6b7"],
     },
     {
-        paletteTitle: "Plumeria Vibrance",
+        paletteTitle: "A Vibrant Plumeria",
         location: "Barbados",
         date: "2025-09",
         image: "plumeria.jpg",
@@ -44,21 +44,21 @@ export const images: PaletteEntry[] = [
         hexColors: ["#1e1d24", "#ac2b12", "#e7833a", "#f4f3ac", "#f0eae6"],
     },
     {
-        paletteTitle: "Light Leaks in the Jungle",
+        paletteTitle: "Concrete Jungle Light Leaks",
         location: "NYC",
         date: "2026-09",
         image: "light-leaks.jpg",
         hexColors: ["#305b71", "#7c4d2c", "#0a0b0e", "#c6d1d4", "#f4e5d9"],
     },
     {
-        paletteTitle: "Lost at Sea",
+        paletteTitle: "Lost At Sea",
         location: "Barbados",
         date: "2025-09",
         image: "lost-at-sea.jpg",
         hexColors: ["#1a2b3a", "#2e5476", "#6f99c1", "#ddd2d1", "#e0dce2"],
     },
     {
-        paletteTitle: "Wine & Whine Store Front",
+        paletteTitle: "Wine & Whine Storefront",
         location: "Nice",
         date: "2024-07",
         image: "wine-store-front.jpg",
