@@ -178,7 +178,7 @@ export const images: PaletteEntry[] = [
     },
     {
         paletteTitle: "Newport Beach Chillin'",
-        location: "Newport Beach",
+        location: "Orange County",
         date: "2024-11",
         image: "newport-beach-chillin.jpg",
         hexColors: ["#403626", "#612c23", "#beab8b", "#b8bcaf", "#f8f1dc"],
