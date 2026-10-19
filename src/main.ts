@@ -1,6 +1,7 @@
 import './styles.css';
 import { racks, type Photo } from './data/racks';
 import { validateRacks } from './data/validate';
+import { formatLabels, paletteSnippet, type ExportFormat } from './export';
 if (import.meta.env.DEV) validateRacks(racks);
 const $ = <T extends HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
 const mod = (n: number, length: number) => ((n % length) + length) % length;
@@ -33,6 +34,8 @@ let changing = false;
 let fading = false;
 let suppressClickUntil = 0;
 let opener: HTMLButtonElement | null = null;
+let shown: Photo | null = null;
+let statusTimer = 0;
 let drag: { id: number; start: number; last: number; time: number; velocity: number; distance: number; base: number; rack: HTMLElement } | null = null;
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, className = '', text?: string): HTMLElementTagNameMap[K] {
   const node = document.createElement(tag); node.className = className;
@@ -47,7 +50,8 @@ function fadeChange(node: HTMLElement, change: () => void): void {
 }
 function openPhoto(photo: Photo, button: HTMLButtonElement): void {
   if (performance.now() < suppressClickUntil || changing) return;
-  opener = button;
+  opener = button; shown = photo;
+  window.clearTimeout(statusTimer); $('#export-status').textContent = '';
   const image = $<HTMLImageElement>('#dialog-photo'); image.alt = photo.alt; image.style.backgroundColor = placeholder(photo);
   image.dataset.photo = photo.id;
   // Show the already-loaded thumbnail at once, then swap in the full image when it is decoded.
@@ -188,11 +192,28 @@ document.addEventListener('keydown', event => {
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); spin(event.key === 'ArrowLeft' ? -1 : 1); }
 });
 $('#close-dialog').addEventListener('click', () => dialog.close());
-// The close button is the dialog's only tab stop. Keep Tab inside the sheet
-// rather than letting browser chrome take focus at the end of the native loop.
+// Keep Tab cycling through the sheet's buttons rather than letting browser
+// chrome take focus at the end of the native loop.
 dialog.addEventListener('keydown', event => {
-  if (event.key === 'Tab') { event.preventDefault(); $('#close-dialog').focus(); }
+  if (event.key !== 'Tab') return;
+  event.preventDefault();
+  const stops = [...dialog.querySelectorAll<HTMLButtonElement>('button')];
+  const current = stops.indexOf(document.activeElement as HTMLButtonElement);
+  stops[mod(current + (event.shiftKey ? -1 : 1), stops.length)].focus();
 });
+// Write-only clipboard access, triggered by a click; nothing is read back or sent anywhere.
+dialog.querySelectorAll<HTMLButtonElement>('.export-button').forEach(button => button.addEventListener('click', async () => {
+  if (!shown) return;
+  const format = button.dataset.format as ExportFormat;
+  const status = $('#export-status'); window.clearTimeout(statusTimer);
+  try {
+    await navigator.clipboard.writeText(paletteSnippet(shown.palette, format));
+    status.textContent = `Copied as ${formatLabels[format]}`;
+  } catch {
+    status.textContent = 'Your browser blocked copying. The hex values are listed above.';
+  }
+  statusTimer = window.setTimeout(() => { status.textContent = ''; }, 4000);
+}));
 let backdropDown = false;
 dialog.addEventListener('pointerdown', event => { backdropDown = event.target === dialog; });
 dialog.addEventListener('click', event => { if (backdropDown && event.target === dialog) dialog.close(); });
