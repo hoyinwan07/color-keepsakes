@@ -5,7 +5,7 @@ export type { Hex } from '../../palette-data.ts';
 export type Photo = {
   id: string;
   title: string;
-  src: string; // Filename in src/images; resolved to a Vite asset URL in main.ts.
+  src: string; // Original filename in originals/; main.ts resolves its WebP renditions to Vite asset URLs.
   alt: string;
   date: string;
   palette: [Hex, Hex, Hex, Hex, Hex];

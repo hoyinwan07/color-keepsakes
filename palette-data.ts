@@ -3,7 +3,7 @@ export type PaletteEntry = {
     paletteTitle: string;
     location: string; // Retained source metadata; not used to group or label racks.
     date: string;
-    image: string; // Exact filename in src/images.
+    image: string; // Exact filename in originals/ (WebP renditions live in src/images).
     hexColors: [Hex, Hex, Hex, Hex, Hex];
 };
 
