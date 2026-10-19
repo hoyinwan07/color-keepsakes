@@ -5,13 +5,25 @@ if (import.meta.env.DEV) validateRacks(racks);
 const $ = <T extends HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
 const mod = (n: number, length: number) => ((n % length) + length) % length;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-const imageUrls = import.meta.glob<string>('./images/*.jpg', {
-  eager: true, query: '?url', import: 'default',
-});
-function photoSource(photo: Photo): string {
-  const url = imageUrls[`./images/${photo.src}`];
-  if (!url) throw new Error(`Missing image asset: ${photo.src}`);
+// WebP renditions generated from the JPEG originals by `npm run images`.
+const imageUrls = {
+  thumb: import.meta.glob<string>('./images/thumb/*.webp', { eager: true, query: '?url', import: 'default' }),
+  full: import.meta.glob<string>('./images/full/*.webp', { eager: true, query: '?url', import: 'default' }),
+};
+function photoSource(photo: Photo, size: keyof typeof imageUrls): string {
+  const url = imageUrls[size][`./images/${size}/${photo.src.replace(/\.jpg$/, '.webp')}`];
+  if (!url) throw new Error(`Missing ${size} image for ${photo.src}; run npm run images`);
   return url;
+}
+// Average of the palette, shown behind each photo until it paints.
+function placeholder(photo: Photo): string {
+  const channel = (i: number) => Math.round(photo.palette.reduce((sum, hex) => sum + parseInt(hex.slice(i, i + 2), 16), 0) / photo.palette.length);
+  return `rgb(${channel(1)} ${channel(3)} ${channel(5)})`;
+}
+const preloaded = new Set<string>();
+function preloadFull(photo: Photo): void {
+  if (preloaded.has(photo.id)) return;
+  preloaded.add(photo.id); new Image().src = photoSource(photo, 'full');
 }
 const host = $('#racks');
 const dialog = $<HTMLDialogElement>('#postcard-dialog');
@@ -36,7 +48,15 @@ function fadeChange(node: HTMLElement, change: () => void): void {
 function openPhoto(photo: Photo, button: HTMLButtonElement): void {
   if (performance.now() < suppressClickUntil || changing) return;
   opener = button;
-  const image = $<HTMLImageElement>('#dialog-photo'); image.src = photoSource(photo); image.alt = photo.alt;
+  const image = $<HTMLImageElement>('#dialog-photo'); image.alt = photo.alt; image.style.backgroundColor = placeholder(photo);
+  image.dataset.photo = photo.id;
+  // Show the already-loaded thumbnail at once, then swap in the full image when it is decoded.
+  const full = photoSource(photo, 'full'); const loader = new Image(); loader.src = full;
+  if (loader.complete) image.src = full;
+  else {
+    image.src = photoSource(photo, 'thumb');
+    loader.decode().catch(() => {}).then(() => { if (image.dataset.photo === photo.id) image.src = full; });
+  }
   $('#dialog-title').textContent = photo.title;
   const date = $<HTMLTimeElement>('#dialog-date'); date.textContent = photo.date; date.dateTime = photo.date;
   $('#swatches').replaceChildren(...photo.palette.map((hex, i) => {
@@ -64,8 +84,10 @@ function makeRack(index: number, position: number): HTMLElement {
       const photo = rack.photos[col * 3 + row];
       const pocket = el('div', 'pocket'); const button = el('button', 'postcard'); button.type = 'button';
       button.setAttribute('aria-label', `Open palette: ${photo.title}`);
-      const img = el('img'); img.src = photoSource(photo); img.alt = photo.alt; img.width = 600; img.height = 800; img.loading = 'lazy'; img.decoding = 'async'; img.draggable = false;
+      const img = el('img'); img.src = photoSource(photo, 'thumb'); img.alt = photo.alt; img.width = 600; img.height = 800; img.loading = 'lazy'; img.decoding = 'async'; img.draggable = false;
+      img.style.backgroundColor = placeholder(photo);
       button.append(img); button.addEventListener('click', () => openPhoto(photo, button));
+      for (const type of ['pointerenter', 'pointerdown', 'focus']) button.addEventListener(type, () => preloadFull(photo));
       pocket.append(button, el('span', 'wire-lip')); column.append(pocket);
     }
     spindle.append(column);

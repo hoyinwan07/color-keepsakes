@@ -7,9 +7,11 @@
     "dev": "vite --host 127.0.0.1 --port 5174 --strictPort",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "check:data": "node --experimental-strip-types scripts/check-data.ts"
+    "check:data": "node --experimental-strip-types scripts/check-data.ts",
+    "images": "node --experimental-strip-types scripts/optimize-images.ts"
   },
   "devDependencies": {
+    "sharp": "0.35.5",
     "typescript": "7.0.2",
     "vite": "8.3.4"
   }
