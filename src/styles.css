@@ -124,8 +124,8 @@ time,
   text-align: center;
   margin: 31px 20px 0;
 }
-.eyebrow {
-  font-size: 0.5625rem;
+p .eyebrow {
+  font-size: 0.5rem;
   letter-spacing: 0.3111em;
   margin: 0 0 13px;
 }
@@ -139,12 +139,13 @@ time,
   font-weight: 500;
   margin: 0 0 14px;
 }
-.intro > p:last-child {
+.intro > p {
   font-size: 0.85rem;
+  max-width: 620px;
   line-height: 1.25;
   color: #686959;
-  max-width: 620px;
   margin: auto;
+  margin-bottom: 6px;
 }
 .collection {
   overflow: hidden;
@@ -372,7 +373,7 @@ footer {
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  font-size: calc(0.5rem * var(--t));
+  font-size: 0.5rem;
   letter-spacing: 0.1625em;
   line-height: 1.8;
 }
@@ -575,8 +576,8 @@ dialog::backdrop {
     font-size: calc(1.5625rem * var(--th));
     letter-spacing: -1px;
   }
-  .eyebrow {
-    font-size: calc(0.5rem * var(--t));
+  p .eyebrow {
+    font-size: 0.375rem;
     letter-spacing: 0.2125em;
   }
   .rack-item[data-position="-1"] {
@@ -857,8 +858,8 @@ dialog::backdrop {
     flex-direction: column;
     gap: 0.5rem;
   }
-  .intro > p:last-child {
+  .intro > p {
+    font-size: 0.65rem;
     max-width: 300px;
-    font-size: 0.75rem;
   }
 }

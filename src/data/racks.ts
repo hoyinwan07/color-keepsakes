@@ -1,6 +1,6 @@
-import { images } from '../../palette-data.ts';
-import type { Hex } from '../../palette-data.ts';
-export type { Hex } from '../../palette-data.ts';
+import { images } from "../../palette-data.ts";
+import type { Hex } from "../../palette-data.ts";
+export type { Hex } from "../../palette-data.ts";
 
 export type Photo = {
   id: string;
@@ -14,8 +14,8 @@ export type Photo = {
 export type Rack = { id: string; photos: Photo[] };
 
 // Preserve the author's order and color values. Racks are browsing pages only.
-const photos: Photo[] = images.map(entry => ({
-  id: entry.image.replace(/\.[^.]+$/, ''),
+const photos: Photo[] = images.map((entry) => ({
+  id: entry.image.replace(/\.[^.]+$/, ""),
   title: entry.paletteTitle,
   src: entry.image,
   alt: entry.paletteTitle,
@@ -26,5 +26,8 @@ const photos: Photo[] = images.map(entry => ({
 
 export const racks: Rack[] = [];
 for (let offset = 0; offset < photos.length; offset += 9) {
-  racks.push({ id: `rack-${racks.length + 1}`, photos: photos.slice(offset, offset + 9) });
+  racks.push({
+    id: `rack-${racks.length + 1}`,
+    photos: photos.slice(offset, offset + 9),
+  });
 }
