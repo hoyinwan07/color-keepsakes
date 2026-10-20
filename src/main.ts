@@ -6,6 +6,8 @@ if (import.meta.env.DEV) validateRacks(racks);
 const $ = <T extends HTMLElement>(selector: string) => document.querySelector<T>(selector)!;
 const mod = (n: number, length: number) => ((n % length) + length) % length;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+const narrow = matchMedia('(max-width: 600px)'); // Matches the CSS mobile breakpoint.
+const arrowBandSlop = 8; // Extra px above and below the arrows that still count as aiming for them.
 // WebP renditions generated from the JPEG originals by `npm run images`.
 const imageUrls = {
   thumb: import.meta.glob<string>('./images/thumb/*.webp', { eager: true, query: '?url', import: 'default' }),
@@ -99,7 +101,13 @@ function makeRack(index: number, position: number): HTMLElement {
   }
   scene.append(spindle); item.append(scene);
   const select = el('button', 'rack-select'); select.type = 'button'; select.setAttribute('aria-label', `View palette rack ${index + 1}`);
-  select.addEventListener('click', () => changeRack(index)); item.append(select);
+  select.addEventListener('click', event => {
+    // On phones the arrows overlap the neighboring racks; a tap that misses an arrow must not traverse.
+    // Keyboard activation (detail 0) is always allowed.
+    if (narrow.matches && event.detail > 0 && alignedWithArrows(event.clientY)) return;
+    changeRack(index);
+  });
+  item.append(select);
   scene.addEventListener('pointerdown', event => {
     if (index !== active || changing || event.button !== 0 || drag) return;
     drag = { id: event.pointerId, start: event.clientX, last: event.clientX, time: event.timeStamp, velocity: 0, distance: 0, base: turns[index] * -120, rack: spindle };
@@ -136,7 +144,11 @@ function spin(step: number): void {
     $('#announcement').textContent = `Rack ${active + 1}, column ${mod(turns[active], 3) + 1} of 3`;
   });
 }
-function changeRack(next: number): void {
+function alignedWithArrows(y: number): boolean {
+  const { top, bottom } = $('#spin-left').getBoundingClientRect();
+  return y >= top - arrowBandSlop && y <= bottom + arrowBandSlop;
+}
+function changeRack(next: number, keepFocus?: HTMLElement): void {
   if (next === active || changing || fading || drag) return;
   changing = true;
   const direction = next === mod(active + 1, racks.length) ? 1 : -1;
@@ -160,7 +172,7 @@ function changeRack(next: number): void {
   fadeChange(host, change);
   window.setTimeout(() => {
     render(); changing = false;
-    document.querySelector<HTMLButtonElement>(`.rack-tab[data-index="${active}"]`)!.focus({ preventScroll: true });
+    (keepFocus ?? document.querySelector<HTMLButtonElement>(`.rack-tab[data-index="${active}"]`)!).focus({ preventScroll: true });
     $('#announcement').textContent = `Palette rack ${active + 1} of ${racks.length}. Column ${mod(turns[active], 3) + 1} of 3.`;
   }, reduced.matches ? 250 : 720);
 }
@@ -188,6 +200,10 @@ function endDrag(event: PointerEvent): void {
 }
 window.addEventListener('pointerup', endDrag); window.addEventListener('pointercancel', endDrag);
 $('#spin-left').addEventListener('click', () => spin(-1)); $('#spin-right').addEventListener('click', () => spin(1));
+for (const [id, step] of [['#traverse-left', -1], ['#traverse-right', 1]] as const) {
+  const button = $<HTMLButtonElement>(id);
+  button.addEventListener('click', () => changeRack(mod(active + step, racks.length), button));
+}
 document.addEventListener('keydown', event => {
   if (dialog.open || event.altKey || event.ctrlKey || event.metaKey) return;
   if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') { event.preventDefault(); spin(event.key === 'ArrowLeft' ? -1 : 1); }

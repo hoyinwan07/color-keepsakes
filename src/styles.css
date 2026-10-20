@@ -31,3 +31,9 @@
 .export-button:focus-visible{outline-offset:3px}
 .export-status{font-size:10px;letter-spacing:.5px;margin:0;min-height:1.4em;text-align:center}
 @media(max-width:600px){.export{margin-top:28px}.export-label{font-size:9px}}
+.traverse-controls{display:none}
+@media(max-width:600px){
+  /* Bottom of the 482px racks, below the 29px collection padding. Text bottoms align with it; padding keeps a 44px tap target. */
+  .traverse-controls{display:flex;justify-content:space-between;position:absolute;top:511px;left:16px;right:16px;transform:translateY(calc(-100% + 18px));pointer-events:none}
+  .traverse{pointer-events:auto;background:transparent;font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:8px;letter-spacing:1.6px;line-height:1;padding:18px 0;color:inherit}
+}
