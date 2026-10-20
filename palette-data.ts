@@ -167,7 +167,7 @@ export const images: PaletteEntry[] = [
         location: "Toronto",
         date: "2025-07",
         image: "the-six.jpg",
-        hexColors: ["#344856", "#526983", "#b1b5bf", "#ebe9e8", "#ffe1a7"],
+        hexColors: ["#344856", "#526983", "#b1b5bf", "#ebe9e8", "#ffca7b"],
     },
     {
         paletteTitle: "Cat Got Your Tongue",
