@@ -44,14 +44,14 @@ export const images: PaletteEntry[] = [
         hexColors: ["#1e1d24", "#ac2b12", "#e7833a", "#f4f3ac", "#f0eae6"],
     },
     {
-        paletteTitle: "Concrete Jungle Light",
+        paletteTitle: "Concrete Jungle",
         location: "NYC",
         date: "2026-09",
         image: "light-leaks.jpg",
         hexColors: ["#305b71", "#7c4d2c", "#0a0b0e", "#c6d1d4", "#f4e5d9"],
     },
     {
-        paletteTitle: "Lost At Sea",
+        paletteTitle: "Lost @ Sea",
         location: "Barbados",
         date: "2025-09",
         image: "lost-at-sea.jpg",
@@ -72,7 +72,7 @@ export const images: PaletteEntry[] = [
         hexColors: ["#43160e", "#88b2d0", "#0d3962", "#ac2b12", "#f5e6da"],
     },
     {
-        paletteTitle: "Kyoto Serenity",
+        paletteTitle: "Finding Zen",
         location: "Kyoto",
         date: "2025-04",
         image: "kyoto-serenity.jpg",
@@ -93,14 +93,14 @@ export const images: PaletteEntry[] = [
         hexColors: ["#612f0e", "#b4792c", "#8ca4ed", "#222b47", "#e9dfd7"],
     },
     {
-        paletteTitle: "Matcha + Pastry > $15 ?",
+        paletteTitle: "Matcha + Pastry > $15 ??",
         location: "NYC",
         date: "2025-06",
         image: "coffee-chat-watchhouse.jpg",
         hexColors: ["#522c21", "#616f2a", "#cddfbd", "#bc6844", "#f5e6da"],
     },
     {
-        paletteTitle: "A Cloudy Central Park",
+        paletteTitle: "Cloudy Central Park",
         location: "NYC",
         date: "2023-10",
         image: "cloudy-day-central-park.jpg",
@@ -114,8 +114,8 @@ export const images: PaletteEntry[] = [
         hexColors: ["#465d41", "#7d989e", "#b25b4c", "#d8c6b9", "#ffedcd"],
     },
     {
-        paletteTitle: "Eze Overlook",
-        location: "Eze",
+        paletteTitle: "Life On The Èze",
+        location: "Èze",
         date: "2024-07",
         image: "eze-overlook.jpg",
         hexColors: ["#5a644b", "#c5bd81", "#678ea8", "#c1965f", "#e8dcd7"],
@@ -146,10 +146,10 @@ export const images: PaletteEntry[] = [
         location: "NYC",
         date: "2025-05",
         image: "date-night.jpg",
-        hexColors: ["#1c1a26", "#881b03", "#4a4a3d", "#e6deb4", "#f8f9eb"],
+        hexColors: ["#1c1a26", "#881b03", "#665962", "#e6deb4", "#f8f9eb"],
     },
     {
-        paletteTitle: "Vegas Airport",
+        paletteTitle: "Airport Lounge",
         location: "Las Vegas",
         date: "2026-05",
         image: "vegas-airport.jpg",
@@ -160,7 +160,7 @@ export const images: PaletteEntry[] = [
         location: "Lagos",
         date: "2023-09",
         image: "cliff-hangin.jpg",
-        hexColors: ["#5b888f", "#e5a57c", "#f1e6b7", "#599686", "#f1eadd"],
+        hexColors: ["#5b888f", "#e5a57c", "#f1e6b7", "#599686", "#744d34"],
     },
     {
         paletteTitle: "The Six",
@@ -174,7 +174,7 @@ export const images: PaletteEntry[] = [
         location: "CDMX",
         date: "2022-02",
         image: "cat-got-your-tongue.jpg",
-        hexColors: ["#0b0b09", "#707b85", "#c9c695", "#c5b391", "#fed8c2"],
+        hexColors: ["#0b0b09", "#707b85", "#c9c695", "#c5b391", "#e4f2ff"],
     },
     {
         paletteTitle: "Newport Beach Chillin'",
@@ -188,7 +188,7 @@ export const images: PaletteEntry[] = [
         location: "NYC",
         date: "2026-07",
         image: "summer-walks.jpg",
-        hexColors: ["#d1681c", "#ffc95f", "#fe4b04", "#fff2ac", "#160201"],
+        hexColors: ["#d1681c", "#7d2e2a", "#ffc95f", "#fe4b04", "#fff2ac"],
     },
     {
         paletteTitle: "Seashells By The Seashore",
