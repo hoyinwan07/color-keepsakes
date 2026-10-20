@@ -69,7 +69,7 @@ export const images: PaletteEntry[] = [
         location: "Tokyo",
         date: "2025-04",
         image: "tokyo-sign.jpg",
-        hexColors: ["#43160e", "#88b2d0", "#0d3962", "#ac2b12", "#f5e6da"],
+        hexColors: ["#88b2d0", "#0d3962", "#ac2b12", "#f5e6da", "#ffffe7",],
     },
     {
         paletteTitle: "Finding Zen",
