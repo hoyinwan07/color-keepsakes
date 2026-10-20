@@ -97,7 +97,7 @@ function makeRack(index: number, position: number): HTMLElement {
     }
     spindle.append(column);
   }
-  scene.append(spindle, el('div', 'rack-foot')); item.append(scene);
+  scene.append(spindle); item.append(scene);
   const select = el('button', 'rack-select'); select.type = 'button'; select.setAttribute('aria-label', `View palette rack ${index + 1}`);
   select.addEventListener('click', () => changeRack(index)); item.append(select);
   scene.addEventListener('pointerdown', event => {
