@@ -139,7 +139,7 @@ export const images: PaletteEntry[] = [
         location: "Los Angeles",
         date: "2026-01",
         image: "orange-ya-glad.jpg",
-        hexColors: ["#bd4e0e", "#e98322","#4a73f2", "#d0dda9", "#feedba"],
+        hexColors: ["#b44a0d", "#e98322","#adc3f1", "#d0dda9", "#feedba"],
     },
     {
         paletteTitle: "Date Night",
