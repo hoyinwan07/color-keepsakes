@@ -4,6 +4,7 @@ export type PaletteEntry = {
     location: string; // Shown after the date in the postcard dialog; not used to group racks. Keep it to a city or region.
     date: string;
     image: string; // Exact filename in originals/ (WebP renditions live in src/images).
+    alt: string; // Describes the photo for screen readers.
     hexColors: [Hex, Hex, Hex, Hex, Hex];
 };
 
@@ -13,6 +14,7 @@ export const images: PaletteEntry[] = [
         location: "Monaco",
         date: "2024-07",
         image: "building-monaco.jpg",
+        alt: "Curved apartment balconies with potted plants against a blue sky",
         hexColors: ["#87acd2", "#7f6248", "#6f6a3c", "#371808", "#eee1d2"],
     },
     {
@@ -20,6 +22,7 @@ export const images: PaletteEntry[] = [
         location: "Los Angeles",
         date: "2020-05",
         image: "yucca.jpg",
+        alt: "A spiky yucca plant seen from above",
         hexColors: ["#373b17", "#71713f", "#d0cdb6", "#d9b64c", "#f1e6b7"],
     },
     {
@@ -27,6 +30,7 @@ export const images: PaletteEntry[] = [
         location: "Barbados",
         date: "2025-09",
         image: "plumeria.jpg",
+        alt: "A hand holding a white plumeria flower in front of turquoise water",
         hexColors: ["#0f0b09", "#8fb1f9", "#46c5f1", "#ffc731", "#f9f5f0"],
     },
     {
@@ -34,6 +38,7 @@ export const images: PaletteEntry[] = [
         location: "Seoul",
         date: "2025-04",
         image: "hanok.jpg",
+        alt: "A wooden room with a white vase of branches and an ornate cabinet",
         hexColors: ["#18110e", "#7b793d", "#e1bb6f", "#2d538c", "#e8e7cf"],
     },
     {
@@ -41,6 +46,7 @@ export const images: PaletteEntry[] = [
         location: "NYC",
         date: "2024-09",
         image: "nyc-skyline-sunset.jpg",
+        alt: "A dark city skyline under a deep orange sunset sky",
         hexColors: ["#1e1d24", "#ac2b12", "#e7833a", "#f4f3ac", "#f0eae6"],
     },
     {
@@ -48,6 +54,7 @@ export const images: PaletteEntry[] = [
         location: "NYC",
         date: "2026-09",
         image: "light-leaks.jpg",
+        alt: "A tall orange brick building beside a street lamp against a deep blue sky",
         hexColors: ["#305b71", "#7c4d2c", "#0a0b0e", "#c6d1d4", "#f4e5d9"],
     },
     {
@@ -55,6 +62,7 @@ export const images: PaletteEntry[] = [
         location: "Barbados",
         date: "2025-09",
         image: "lost-at-sea.jpg",
+        alt: "A wooden dock with a coiled black rope over deep blue water",
         hexColors: ["#1a2b3a", "#2e5476", "#6f99c1", "#ddd2d1", "#e0dce2"],
     },
     {
@@ -62,6 +70,7 @@ export const images: PaletteEntry[] = [
         location: "Nice",
         date: "2024-07",
         image: "wine-store-front.jpg",
+        alt: "A wine shop window with handwritten notes and bottles",
         hexColors: ["#161110", "#437f89", "#7d1f20", "#bda791", "#e8eced"],
     },
     {
@@ -69,6 +78,7 @@ export const images: PaletteEntry[] = [
         location: "Tokyo",
         date: "2025-04",
         image: "tokyo-sign.jpg",
+        alt: "A street sign and power lines above a gray building",
         hexColors: ["#88b2d0", "#0d3962", "#ac2b12", "#e1d9d0", "#ffffe7",],
     },
     {
@@ -76,6 +86,7 @@ export const images: PaletteEntry[] = [
         location: "Kyoto",
         date: "2025-04",
         image: "kyoto-serenity.jpg",
+        alt: "A traditional low Japanese building behind a trimmed green hedge",
         hexColors: ["#453327","#576d1f",  "#877c19", "#c7d05d", "#f5f3e0"],
     },
     {
@@ -83,6 +94,7 @@ export const images: PaletteEntry[] = [
         location: "Tokyo",
         date: "2025-04",
         image: "tokyo-vending-machines.jpg",
+        alt: "A red vending machine in front of shuttered brick storefronts",
         hexColors: ["#402411", "#82877a", "#c03931", "#ddd4a0", "#f8f1dc"],
     },
     {
@@ -90,6 +102,7 @@ export const images: PaletteEntry[] = [
         location: "NYC",
         date: "2025-03",
         image: "afternoon-tea.jpg",
+        alt: "Blue-and-white plates of golden pastries on a dark wooden table",
         hexColors: ["#612f0e", "#b4792c", "#8ca4ed", "#222b47", "#e9dfd7"],
     },
     {
@@ -97,6 +110,7 @@ export const images: PaletteEntry[] = [
         location: "NYC",
         date: "2025-06",
         image: "coffee-chat-watchhouse.jpg",
+        alt: "An iced matcha latte and a twisted pastry on a round café table",
         hexColors: ["#522c21", "#616f2a", "#cddfbd", "#bc6844", "#f5e6da"],
     },
     {
@@ -104,6 +118,7 @@ export const images: PaletteEntry[] = [
         location: "NYC",
         date: "2023-10",
         image: "cloudy-day-central-park.jpg",
+        alt: "Autumn trees in front of a misty Manhattan skyline",
         hexColors: ["#39271f", "#5a5622", "#8e5112", "#f5e6aa", "#e9dacb"],
     },
     {
@@ -111,6 +126,7 @@ export const images: PaletteEntry[] = [
         location: "Saint Lucia",
         date: "2024-05",
         image: "saint-lucia-beach.jpg",
+        alt: "A calm beach and bay with a green hill rising behind it",
         hexColors: ["#465d41", "#7d989e", "#b25b4c", "#d8c6b9", "#ffedcd"],
     },
     {
@@ -118,6 +134,7 @@ export const images: PaletteEntry[] = [
         location: "Èze",
         date: "2024-07",
         image: "eze-overlook.jpg",
+        alt: "A Mediterranean coastline with boats in the bay, seen through trees",
         hexColors: ["#5a644b", "#c5bd81", "#678ea8", "#c1965f", "#e8dcd7"],
     },
     {
@@ -125,6 +142,7 @@ export const images: PaletteEntry[] = [
         location: "CDMX",
         date: "2022-02",
         image: "handshake-bar-entrance.jpg",
+        alt: "A red-lit, graffiti-covered bar entrance with a sign above the door",
         hexColors: ["#7b000c", "#205152", "#756c25", "#dfdcc1", "#f8f9eb"],
     },
     {
@@ -132,6 +150,7 @@ export const images: PaletteEntry[] = [
         location: "Santa Monica",
         date: "2019-06",
         image: "santa-monica-pier.jpg",
+        alt: "A sunny beach with white hotel towers along the shore",
         hexColors: ["#264057", "#4b8ed1", "#dac183", "#827062", "#e9f0dd"],
     },
     {
@@ -139,6 +158,7 @@ export const images: PaletteEntry[] = [
         location: "Lagos",
         date: "2023-09",
         image: "cliff-hangin.jpg",
+        alt: "A sandy sea cliff with a tiny figure standing on top, above calm water at dusk",
         hexColors: ["#5b888f", "#e5a57c", "#f1e6b7", "#599686", "#744d34"],
     },
     {
@@ -146,6 +166,7 @@ export const images: PaletteEntry[] = [
         location: "Toronto",
         date: "2025-07",
         image: "the-six.jpg",
+        alt: "The CN Tower rising into a clear blue sky",
         hexColors: ["#344856", "#526983", "#b1b5bf", "#ebe9e8", "#ffca7b"],
     },
     {
@@ -153,6 +174,7 @@ export const images: PaletteEntry[] = [
         location: "Orange County",
         date: "2024-11",
         image: "newport-beach-chillin.jpg",
+        alt: "A pier with a small pavilion on a hazy beach at dusk",
         hexColors: ["#403626", "#612c23", "#beab8b", "#b8bcaf", "#f8f1dc"],
     },
     {
@@ -160,6 +182,7 @@ export const images: PaletteEntry[] = [
         location: "Los Angeles",
         date: "2026-01",
         image: "orange-ya-glad.jpg",
+        alt: "An orange tree full of ripe fruit against a bright blue sky",
         hexColors: ["#b44a0d", "#e98322","#adc3f1", "#d0dda9", "#feedba"],
     },
     {
@@ -167,6 +190,7 @@ export const images: PaletteEntry[] = [
         location: "NYC",
         date: "2025-05",
         image: "date-night.jpg",
+        alt: "A candlelit outdoor table with a white tablecloth in front of an orange brick wall",
         hexColors: ["#1c1a26", "#881b03", "#665962", "#e6deb4", "#f8f9eb"],
     },
     {
@@ -174,6 +198,7 @@ export const images: PaletteEntry[] = [
         location: "Las Vegas",
         date: "2026-05",
         image: "vegas-airport.jpg",
+        alt: "A dark airport lounge with large windows looking out onto orange buildings",
         hexColors: ["#fb8150", "#a6e0fc", "#1c1a26", "#e5b97c", "#effbf7"],
     },
     {
@@ -181,6 +206,7 @@ export const images: PaletteEntry[] = [
         location: "CDMX",
         date: "2022-02",
         image: "cat-got-your-tongue.jpg",
+        alt: "A white and tabby cat meowing beside a metal bin",
         hexColors: ["#0b0b09", "#707b85", "#c9c695", "#c5b391", "#e4f2ff"],
     },
     {
@@ -188,6 +214,7 @@ export const images: PaletteEntry[] = [
         location: "NYC",
         date: "2026-07",
         image: "summer-walks.jpg",
+        alt: "A bright orange sun setting behind power lines and tree silhouettes",
         hexColors: ["#d1681c", "#7d2e2a", "#ffc95f", "#fe4b04", "#fff2ac"],
     },
     {
@@ -195,6 +222,7 @@ export const images: PaletteEntry[] = [
         location: "Oahu",
         date: "2026-01",
         image: "seashells-by-the-seashore.jpg",
+        alt: "A hand with dark nails covered in small seashells, resting on sand",
         hexColors: ["#a68785", "#78482f", "#540906", "#e6d4bc", "#fdf3e3"],
     },
 ];

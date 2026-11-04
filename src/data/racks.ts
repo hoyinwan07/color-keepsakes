@@ -18,7 +18,7 @@ const photos: Photo[] = images.map((entry) => ({
   id: entry.image.replace(/\.[^.]+$/, ""),
   title: entry.paletteTitle,
   src: entry.image,
-  alt: entry.paletteTitle,
+  alt: entry.alt,
   date: entry.date,
   location: entry.location.trim(),
   palette: [...entry.hexColors],

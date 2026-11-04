@@ -4,6 +4,8 @@ We take pictures of the things we want to keep a little longer. This is a small 
 
 Pull a postcard. Take a palette. Go make something.
 
+**Live site: [wishyouwerehue.vercel.app](https://wishyouwerehue.vercel.app)**
+
 ## What it does
 
 - **Postcard racks.** Three-sided wire racks built in CSS 3D. Drag, swipe, or use the arrow keys to turn them, and click a neighboring rack to bring it forward.
@@ -28,3 +30,7 @@ npm run dev
 ```
 
 Then open http://127.0.0.1:5174.
+
+## License
+
+Code is released under the [MIT License](LICENSE). The photographs are © Hoyin Wan, all rights reserved. Lato is used under the SIL Open Font License (`src/fonts/OFL.txt`).
