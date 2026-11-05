@@ -1,0 +1,71 @@
+:root {
+  font-family: var(--font-sans);
+  color: var(--ink);
+  background: var(--page);
+  font-synthesis: none;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+}
+/* Paper grain over the whole page. */
+body:before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  filter: url(#paper);
+  opacity: 0.045;
+  z-index: 10;
+}
+.texture-filter {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  border: 0;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 6px;
+}
+button:disabled {
+  cursor: default;
+}
+a {
+  color: inherit;
+}
+.mono,
+.eyebrow,
+.interaction-hint,
+footer,
+.rack-tab,
+time,
+.palette-caption {
+  font-family: var(--font-mono);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.modal-open {
+  overflow: hidden;
+}

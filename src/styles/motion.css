@@ -1,0 +1,16 @@
+/* !important is deliberate: reduced motion must beat every component's own transition. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *:before,
+  *:after {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+  dialog[open] {
+    animation: veil 150ms ease;
+  }
+  .postcard:hover,
+  .postcard:focus-visible {
+    transform: translateZ(2px);
+  }
+}

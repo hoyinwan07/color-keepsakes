@@ -1,0 +1,23 @@
+:root {
+  /* Color */
+  --ink: #424a35;
+  --page: #eeeae1;
+  --paper: #f7f4ec;
+  --wire: #fffef8;
+  --night: #1c1a26;
+
+  /* Type */
+  --font-sans: Lato, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Rack geometry */
+  --rack-height: 482px;
+  --collection-pad: 29px;
+  /* Distance from the spindle's axis to each column; read by the column transforms set in rack.ts. */
+  --radius: 66px;
+  --card-width: 105px;
+  --card-height: 140px;
+
+  /* Motion. rack.ts waits slightly longer than this before rebuilding racks. */
+  --rack-glide: 700ms;
+}

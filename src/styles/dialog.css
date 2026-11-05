@@ -1,0 +1,266 @@
+dialog {
+  border: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  width: min(1020px, 94vw);
+  max-width: none;
+  max-height: 92dvh;
+  overflow: auto;
+  box-shadow: 0 24px 100px #14141430;
+}
+dialog[open] {
+  animation: appear 280ms ease both;
+}
+dialog::backdrop {
+  background: #252a2399;
+  backdrop-filter: blur(5px);
+  animation: veil 280ms ease;
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0.975);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes veil {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* The postcard: photo on the left, details on the right (stacked on phones). */
+.postcard-sheet {
+  display: grid;
+  grid-template-columns: 58% 42%;
+  min-height: 650px;
+  position: relative;
+}
+.postcard-sheet:after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  filter: url(#paper);
+  opacity: 0.045;
+  pointer-events: none;
+}
+#dialog-photo {
+  width: 100%;
+  height: 100%;
+  min-height: 650px;
+  object-fit: cover;
+  display: block;
+}
+.postcard-details {
+  padding: 44px 34px 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.palette-heading h2 {
+  text-transform: uppercase;
+  font-size: clamp(1.8rem, 3.6vw, 2.55rem);
+  letter-spacing: -0.2px;
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.08;
+  /* Curated titles can be long. */
+  overflow-wrap: anywhere;
+}
+.palette-meta {
+  display: block;
+  margin-top: 12px;
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+}
+#dialog-location-name {
+  text-transform: uppercase;
+}
+.close {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+/* The five swatches, framed by a bracket labeled COLOR PALETTE. */
+.palette-block {
+  display: flex;
+  gap: 29px;
+  margin: 62px auto 0;
+  align-items: stretch;
+}
+.palette-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 17px;
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+}
+.palette-caption span {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+.palette-caption i {
+  display: block;
+  flex: 1;
+  border-left: 1px solid var(--ink);
+  position: relative;
+}
+.palette-caption i:first-child:before,
+.palette-caption i:last-child:after {
+  content: "";
+  position: absolute;
+  width: 7px;
+  left: -4px;
+  border-top: 1px solid var(--ink);
+}
+.palette-caption i:last-child:after {
+  bottom: 0;
+}
+.swatches {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+/* Keeps each hex value attached to its color in both layouts. */
+.swatch-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.swatch {
+  width: 54px;
+  height: 54px;
+  box-shadow: inset 0 0 0 1px #0000000b;
+}
+.swatch-item .swatch {
+  display: block;
+  flex: none;
+}
+.swatch-hex {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.postcard-note {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 0.75rem;
+  margin: 0;
+  padding-top: 25px;
+  text-align: center;
+  opacity: 0.85;
+}
+
+@media (min-width: 1000px) {
+  .palette-heading {
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  dialog {
+    width: 92vw;
+  }
+  .postcard-sheet {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+  #dialog-photo {
+    height: 43dvh;
+    min-height: 0;
+  }
+  .postcard-details {
+    padding: 25px 24px 24px;
+  }
+  .palette-heading h2 {
+    font-size: 1.8rem;
+  }
+  /* The close button floats over the photo, so it needs contrast against any image. */
+  .close {
+    position: fixed;
+    color: var(--paper);
+    top: 8px;
+    right: 8px;
+    border-radius: 50%;
+    z-index: 2;
+    filter: drop-shadow(0 0 1px #000000b3) drop-shadow(0 1px 3px #00000066);
+  }
+  .close:focus-visible {
+    outline-color: var(--paper);
+    outline-offset: 0;
+    box-shadow: 0 0 0 4px var(--ink);
+  }
+  .palette-block {
+    flex-direction: column;
+    margin: 29px 0 0;
+    gap: 15px;
+  }
+  .palette-caption {
+    flex-direction: row;
+    gap: 13px;
+    font-size: 0.5625rem;
+    letter-spacing: 0.2222em;
+  }
+  .palette-caption span {
+    writing-mode: horizontal-tb;
+    transform: none;
+  }
+  .palette-caption i {
+    border-left: 0;
+    border-top: 1px solid var(--ink);
+  }
+  .palette-caption i:first-child:before,
+  .palette-caption i:last-child:after {
+    border-top: 0;
+    border-left: 1px solid var(--ink);
+    height: 7px;
+    width: 0;
+    top: -4px;
+    left: 0;
+  }
+  .palette-caption i:last-child:after {
+    left: auto;
+    right: 0;
+  }
+  .swatches {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  .swatch-item {
+    flex: 1;
+    min-width: 0;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .swatch-item .swatch {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+  .swatch-hex {
+    letter-spacing: 0;
+  }
+  .postcard-note {
+    display: none;
+  }
+}

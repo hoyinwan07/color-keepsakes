@@ -1,4 +1,4 @@
-import "./styles.css";
+import "./styles/index.css";
 import { racks } from "./data/racks.ts";
 import { validateRacks } from "./data/validate.ts";
 import { initDialog, shownPalette } from "./dialog.ts";

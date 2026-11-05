@@ -1,0 +1,186 @@
+.collection {
+  overflow: hidden;
+  position: relative;
+  padding-top: var(--collection-pad);
+}
+.racks {
+  height: var(--rack-height);
+  position: relative;
+  isolation: isolate;
+  max-width: 1400px;
+  margin: auto;
+}
+
+/*
+ * Three racks are on stage at once, positioned by data-position:
+ * -1 (left), 0 (front), 1 (right). While gliding, the outgoing rack
+ * briefly takes position -2 or 2 and fades away off-screen.
+ */
+.rack-item {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 260px;
+  height: var(--rack-height);
+  margin-left: -130px;
+  transform: translateX(0) scale(1);
+  transition:
+    transform var(--rack-glide) ease-in-out,
+    opacity var(--rack-glide) ease-in-out;
+  transform-origin: 50% 45%;
+  opacity: 1;
+}
+.rack-item[data-position="-1"] {
+  transform: translateX(calc(-1 * min(36vw, 440px))) scale(0.78);
+  opacity: 1;
+}
+.rack-item[data-position="1"] {
+  transform: translateX(min(36vw, 440px)) scale(0.78);
+  opacity: 1;
+}
+.rack-item[data-position="-2"] {
+  transform: translateX(-100vw) scale(0.7);
+  opacity: 0;
+}
+.rack-item[data-position="2"] {
+  transform: translateX(100vw) scale(0.7);
+  opacity: 0;
+}
+
+.rack-scene {
+  height: 459px;
+  perspective: 1100px;
+  perspective-origin: 50% 43%;
+  position: relative;
+  touch-action: pan-y;
+  user-select: none;
+  transition: opacity var(--rack-glide) ease-in-out;
+}
+/* Dim the neighboring racks. */
+.rack-item:not([data-position="0"]) .rack-scene {
+  opacity: 0.56;
+}
+.rack-item[data-position="0"] .rack-scene {
+  opacity: 1;
+}
+
+.spindle {
+  height: 445px;
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 820ms cubic-bezier(0.2, 0.75, 0.18, 1);
+}
+.spindle.dragging {
+  transition: none;
+}
+.pole {
+  position: absolute;
+  top: -8px;
+  left: calc(50% - 3px);
+  width: 6px;
+  height: 453px;
+  background: linear-gradient(90deg, #c4c2b8, #fffef5 45%, #d0cec5);
+  border-radius: 4px;
+  box-shadow: 2px 1px 3px #625e4620;
+  transform: translateZ(-1px);
+}
+.pole:before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -3px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fffdf4;
+}
+.column {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 62px);
+  width: 124px;
+  display: grid;
+  gap: 12px;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  border-left: 2px solid var(--wire);
+  border-right: 2px solid var(--wire);
+  padding: 0 5px 5px;
+  box-shadow: 1px 0 1px #a8a59760;
+}
+.pocket {
+  height: 139px;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(-9deg);
+}
+.postcard {
+  display: block;
+  position: absolute;
+  bottom: 1px;
+  left: 3px;
+  width: var(--card-width);
+  height: var(--card-height);
+  padding: 5px;
+  background: var(--night);
+  box-shadow: 0 3px 7px #38382525;
+  transform: translateZ(2px);
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease;
+  backface-visibility: hidden;
+}
+.postcard img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+.postcard:hover,
+.postcard:focus-visible {
+  transform: translate3d(0, -7px, 5px) rotate(-2deg);
+}
+.wire-lip {
+  position: absolute;
+  bottom: 0;
+  left: -7px;
+  right: -7px;
+  height: 32px;
+  border: 2px solid var(--wire);
+  border-radius: 2px 2px 8px 8px;
+  transform: translateZ(8px);
+  pointer-events: none;
+  box-shadow: 1px 1px 1px #8f8b6f55;
+}
+.wire-lip:after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 2px;
+  height: 30px;
+  background: var(--wire);
+}
+/* Covers a side rack so a click anywhere on it brings it to the front. */
+.rack-select {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+  border-radius: 8px;
+}
+.rack-select[hidden] {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .rack-item[data-position="-1"] {
+    transform: translateX(-56vw) scale(0.72);
+    opacity: 1;
+  }
+  .rack-item[data-position="1"] {
+    transform: translateX(56vw) scale(0.72);
+    opacity: 1;
+  }
+}

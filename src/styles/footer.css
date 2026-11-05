@@ -1,0 +1,24 @@
+footer {
+  border-top: 1px solid #c9cabe;
+  margin: 0 5vw;
+  padding: 23px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 0.5rem;
+  letter-spacing: 0.1625em;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  footer {
+    font-size: 0.65rem;
+    letter-spacing: 0.0857em;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  footer span:last-child {
+    text-align: right;
+    white-space: nowrap;
+  }
+}

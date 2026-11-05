@@ -1,0 +1,108 @@
+.spin-controls {
+  position: absolute;
+  top: 188px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 330px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+.arrow {
+  pointer-events: auto;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  padding-bottom: 4px;
+  background: transparent;
+  width: 40px;
+  height: 40px;
+  font-size: 1.25rem;
+  transition: transform 200ms;
+}
+.arrow:hover {
+  transform: scale(1.08);
+}
+#column-status {
+  position: absolute;
+  top: 333px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 1px solid var(--night);
+  padding: 5px 18px;
+  border-radius: 35px;
+  font-size: 0.625rem;
+  letter-spacing: 0.2em;
+}
+
+/* Level with the bottom of the front rack. On wide screens the links sit under the neighboring racks. */
+.traverse-controls {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: calc(var(--collection-pad) + var(--rack-height));
+  left: 50%;
+  width: calc(2 * min(36vw, 440px) + 67px);
+  transform: translate(-50%, calc(-100% + 18px));
+  pointer-events: none;
+}
+.traverse {
+  pointer-events: auto;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  padding: 18px 0;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+.traverse-icon {
+  font-size: 1.25rem;
+  letter-spacing: 0;
+  margin-bottom: 3px;
+}
+
+.interaction-hint {
+  text-align: center;
+  margin: 45px 0 21px;
+  font-size: 0.65rem;
+  font-style: italic;
+  letter-spacing: 0.1778em;
+}
+.interaction-hint span {
+  padding: 0 9px;
+}
+#rack-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  padding: 0 0 37px;
+}
+.rack-tab {
+  background: transparent;
+  font-size: 0.65rem;
+  padding: 8px 0;
+  border-bottom: 1px solid transparent;
+}
+.rack-tab[aria-current="true"] {
+  border-color: var(--ink);
+}
+
+@media (max-width: 600px) {
+  .spin-controls {
+    width: 290px;
+  }
+  .traverse-controls {
+    left: 16px;
+    right: 16px;
+    width: auto;
+    transform: translateY(calc(-100% + 18px));
+  }
+  .interaction-hint {
+    letter-spacing: 0.2em;
+  }
+}
