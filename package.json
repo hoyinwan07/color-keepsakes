@@ -1,8 +1,18 @@
 {
   "name": "color-keepsakes",
   "version": "1.0.0",
+  "description": "Photo-inspired color palettes on an interactive postcard rack.",
+  "license": "MIT",
+  "author": "Hoyin Wan",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoyinwan07/color-keepsakes.git"
+  },
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5174 --strictPort",
     "build": "tsc --noEmit && vite build",
