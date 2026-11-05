@@ -1,7 +1,8 @@
 import "./styles.css";
-import { racks, type Photo } from "./data/racks";
-import { validateRacks } from "./data/validate";
-import { formatLabels, paletteSnippet, type ExportFormat } from "./export";
+import { racks } from "./data/racks.ts";
+import type { Photo } from "./data/types.ts";
+import { validateRacks } from "./data/validate.ts";
+import { formatLabels, paletteSnippet, type ExportFormat } from "./export.ts";
 if (import.meta.env.DEV) validateRacks(racks);
 const $ = <T extends HTMLElement>(selector: string) =>
   document.querySelector<T>(selector)!;
@@ -23,11 +24,10 @@ const imageUrls = {
   }),
 };
 function photoSource(photo: Photo, size: keyof typeof imageUrls): string {
-  const url =
-    imageUrls[size][`./images/${size}/${photo.src.replace(/\.jpg$/, ".webp")}`];
+  const url = imageUrls[size][`./images/${size}/${photo.id}.webp`];
   if (!url)
     throw new Error(
-      `Missing ${size} image for ${photo.src}; run npm run images`,
+      `Missing ${size} image for ${photo.id}; run npm run images`,
     );
   return url;
 }

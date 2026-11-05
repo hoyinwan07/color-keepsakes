@@ -1,4 +1,4 @@
-import type { Hex } from "./data/racks";
+import type { Hex } from "./data/types.ts";
 
 export type ExportFormat = "css" | "tailwind" | "json";
 
