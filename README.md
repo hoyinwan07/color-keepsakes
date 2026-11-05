@@ -58,4 +58,4 @@ Then open http://127.0.0.1:5174. Other scripts: `npm test`, `npm run typecheck`,
 
 ## License
 
-Code is released under the [MIT License](LICENSE). The photographs are © Hoyin Wan, all rights reserved. Lato is used under the SIL Open Font License (`src/fonts/OFL.txt`).
+Code is released under the [MIT License](LICENSE). The photographs are © Hoyin Wan, all rights reserved. Lato and Zeyada are self-hosted under the SIL Open Font License (`src/fonts/OFL-Lato.txt`, `src/fonts/OFL-Zeyada.txt`).

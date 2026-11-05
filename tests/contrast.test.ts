@@ -13,7 +13,7 @@ const contrast = (foreground: string, background: string) =>
   (luminance(background) + 0.05) / (luminance(foreground) + 0.05);
 
 // Text color against both page backgrounds must meet WCAG AA for body text.
-for (const background of ["#F7F4EC", "#EEEAE1"]) {
+for (const background of ["#F7F4EC", "#F6F1EA"]) {
   test(`accent text on ${background} meets AA (4.5:1)`, () => {
     assert.ok(contrast("#424A35", background) >= 4.5);
   });

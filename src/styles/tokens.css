@@ -1,13 +1,14 @@
 :root {
   /* Color */
   --ink: #424a35;
-  --page: #eeeae1;
+  --page: #f6f1ea;
   --paper: #f7f4ec;
   --wire: #fffef8;
   --night: #1c1a26;
 
   /* Type */
   --font-sans: Lato, "Helvetica Neue", Arial, sans-serif;
+  --font-display: Zeyada, "Bradley Hand", cursive;
   --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
 
   /* Rack geometry */
