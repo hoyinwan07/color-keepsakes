@@ -8,13 +8,13 @@
   letter-spacing: 0;
   font-weight: 400;
   line-height: 1;
-  margin: 0 0 14px;
+  margin: 6px 0;
 }
 .intro > p {
   font-size: 0.85rem;
   max-width: 620px;
   line-height: 1.25;
-  color: #686959;
+  color: #373b17;
   margin: auto;
   margin-bottom: 6px;
 }
