@@ -8,6 +8,10 @@ Pull a postcard. Take a palette. Go make something.
 
 ![Three wire postcard racks, the center one in front](docs/screenshot.webp)
 
+![An open postcard on desktop: the photo beside its title, date, five-color palette, and copy buttons](docs/postcard-desktop.webp)
+
+<img src="docs/postcard-mobile.webp" alt="The same postcard on a phone, with the photo above its palette" width="320">
+
 ## What it does
 
 - **Postcard racks.** Three-sided wire racks built in CSS 3D. Drag, swipe, or use the arrow keys to turn them, and click a neighboring rack to bring it forward.
