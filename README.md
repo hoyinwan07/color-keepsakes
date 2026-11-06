@@ -12,12 +12,16 @@ Pull a postcard. Take a palette. Go make something.
   <tr>
     <td align="center">
       <img src="docs/postcard-desktop.webp" alt="An open postcard on desktop: the photo beside its title, date, five-color palette, and copy buttons" height="420">
-      <br>
-      <sub>Postcard UI Color Palette (Desktop)</sub>
     </td>
     <td align="center">
       <img src="docs/postcard-mobile.webp" alt="The same postcard on a phone, with the photo above its palette" height="420">
-      <br>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <sub>Postcard UI Color Palette (Desktop)</sub>
+    </td>
+    <td align="center">
       <sub>Postcard UI Color Palette (Mobile)</sub>
     </td>
   </tr>
